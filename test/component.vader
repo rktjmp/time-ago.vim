@@ -1,0 +1,38 @@
+Execute (split time to components):
+  let days = 3 * 24 * 60 * 60
+  let hours = 5 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let g:answer = time_ago#components(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual g:answer.days, 3
+  AssertEqual g:answer.hours, 5
+  AssertEqual g:answer.minutes, 43
+  AssertEqual g:answer.seconds, 22
+
+Execute (split time to components):
+  let days = 0 * 24 * 60 * 60
+  let hours = 0 * 60 * 60
+  let minutes = 1 * 60
+  let seconds = 12
+  let g:answer = time_ago#components(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual g:answer.days, 0
+  AssertEqual g:answer.hours, 0
+  AssertEqual g:answer.minutes, 1
+  AssertEqual g:answer.seconds, 12
+
+Execute (split time to components):
+  let days = 100 * 24 * 60 * 60
+  let hours = 0 * 60 * 60
+  let minutes = 0 * 60
+  let seconds = 2
+  let g:answer = time_ago#components(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual g:answer.days, 100
+  AssertEqual g:answer.hours, 0
+  AssertEqual g:answer.minutes, 0
+  AssertEqual g:answer.seconds, 2

@@ -1,0 +1,165 @@
+Execute (over two weeks):
+  let days = 14 * 24 * 60 * 60
+  let hours = 5 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let two_weeks = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+  let days = (4 * 7 * 24 * 60 * 60)
+  let four_weeks = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual two_weeks, "2 weeks"
+  AssertEqual four_weeks, "4 weeks"
+
+Execute (between one and two weeks):
+  let days = 8 * 24 * 60 * 60
+  let hours = 5 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+  let days = 13 * 24 * 60 * 60
+  let two = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "1 week, 1 day"
+  AssertEqual two, "1 week, 6 days"
+
+Execute (one week):
+  let days = 7 * 24 * 60 * 60
+  let hours = 5 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "1 week"
+
+Execute (between 3 to 6 days):
+  let days = 6 * 24 * 60 * 60
+  let hours = 5 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+  let days = 3 * 24 * 60 * 60
+  let two = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "6 days"
+  AssertEqual two, "3 days"
+
+Execute (between 1 and 2 days):
+  let days = 2 * 24 * 60 * 60
+  let hours = 5 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+  let days = 1 * 24 * 60 * 60
+  let hours = 13 * 60 * 60
+  let two = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+  let days = 2 * 24 * 60 * 60
+  let hours = 0 * 60 * 60
+  let three = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+  let days = 1 * 24 * 60 * 60
+  let four = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "2 days, 5 hours"
+  AssertEqual two, "1 day, 13 hours"
+  AssertEqual three, "2 days"
+  AssertEqual four, "1 day"
+
+Execute (under a day, over 6 hours):
+  let days = 0 * 24 * 60 * 60
+  let hours = 15 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+  let hours = 7 * 60 * 60
+  let two = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "15 hours"
+  AssertEqual two, "7 hours"
+
+Execute (over an hour, under six):
+  let days = 0 * 24 * 60 * 60
+  let hours = 6 * 60 * 60
+  let minutes = 43 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let hours = 3 * 60 * 60
+  let minutes = 25 * 60
+  let two = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 15 * 60
+  let three = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 5 * 60
+  let four = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let hours = 1 * 60 * 60
+  let five = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "6 hours, 30 minutes"
+  AssertEqual two, "3 hours, 15 minutes"
+  AssertEqual three, "3 hours, 15 minutes"
+  AssertEqual four, "3 hours"
+  AssertEqual five, "1 hour"
+
+Execute (under an hour):
+  let days = 0 * 24 * 60 * 60
+  let hours = 0 * 60 * 60
+  let minutes = 55 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 40 * 60
+  let two = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 39 * 60
+  let three = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 29 * 60
+  let four = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 15 * 60
+  let five = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 11 * 60
+  let six = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "50 minutes"
+  AssertEqual two, "40 minutes"
+  AssertEqual three, "30 minutes"
+  AssertEqual four, "25 minutes"
+  AssertEqual five, "15 minutes"
+  AssertEqual six, "10 minutes"
+
+Execute (under 10 minutes):
+  let days = 0 * 24 * 60 * 60
+  let hours = 0 * 60 * 60
+  let minutes = 10 * 60
+  let seconds = 22
+  let one = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 8 * 60
+  let two = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 2 * 60
+  let three = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 1 * 60
+  let four = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+  let minutes = 0 * 60
+  let five = time_ago#fuzzy(localtime() - (days + hours + minutes + seconds))
+
+Then (assert it worked):
+  AssertEqual one, "10 minutes"
+  AssertEqual two, "8 minutes"
+  AssertEqual three, "2 minutes"
+  AssertEqual four, "1 minute"
+  AssertEqual five, "under a minute"
