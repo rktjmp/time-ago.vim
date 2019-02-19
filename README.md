@@ -1,6 +1,6 @@
 # Time-Ago.vim
 
-A (neo)vim plugin to convert a unix timestamp into a set of day, hour, minute, second components or into a fuzzy phrase.
+A neovim & vim plugin to convert a unix timestamp into a set of day, hour, minute, second components or into a fuzzy phrase.
 
 Example output of components:
 
