@@ -34,7 +34,7 @@ Times are left 'undecorated' for you to alter as desired (i.e. '8 minutes ago', 
 # Usage
 
     l:timestamp = localtime() - (60 * 60 * 24 * 3) " 3 days ago
-    l:fuzzed = time_ago#fuzzy(l:timestamp)
+    l:fuzzed = time_ago#fuzzy_from_now(l:timestamp)
     " => 3 days
-    l:components = time_ago#components(l:timestamp)
+    l:components = time_ago#components_from_now(l:timestamp)
     " => {days: 3, hours: 0, minutes: 0, seconds: 0}

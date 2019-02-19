@@ -1,11 +1,4 @@
-if exists('g:time_ago') || &cp 
-endif
-
-augroup time_ago_augroup
-  autocmd!
-augroup END
-
-function! time_ago#components(timestamp, ...)
+function! time_ago#components_from_now(timestamp, ...)
   let l:now = localtime()
   let l:age = l:now - a:timestamp
 
@@ -24,8 +17,8 @@ function! time_ago#components(timestamp, ...)
   return l:components
 endfunction
 
-function! time_ago#fuzzy(timestamp, ...)
-  let l:components = time_ago#components(a:timestamp)
+function! time_ago#fuzzy_from_now(timestamp, ...)
+  let l:components = time_ago#components_from_now(a:timestamp)
 
   let l:days = l:components.days
   let l:hours = l:components.hours
